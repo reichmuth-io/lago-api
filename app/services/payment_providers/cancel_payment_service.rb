@@ -23,6 +23,8 @@ module PaymentProviders
         PaymentProviders::Adyen::Payments::CancelService.call!(payment:)
       when "PaymentProviders::GocardlessProvider"
         PaymentProviders::Gocardless::Payments::CancelService.call!(payment:)
+      when "PaymentProviders::MollieProvider"
+        PaymentProviders::Mollie::Payments::CancelService.call!(payment:)
       else
         # Cashfree, Flutterwave, MoneyHash, and any future provider without a
         # dedicated cancel service: nothing to do here. The eventual webhook

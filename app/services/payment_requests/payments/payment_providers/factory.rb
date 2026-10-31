@@ -22,6 +22,8 @@ module PaymentRequests
             PaymentRequests::Payments::GocardlessService
           when "moneyhash"
             PaymentRequests::Payments::MoneyhashService
+          when "mollie"
+            PaymentRequests::Payments::MollieService
           else
             raise(NotImplementedError)
           end

@@ -491,6 +491,9 @@ GEM
       monetize (~> 2.0)
       money (~> 7.0)
       railties (>= 7.0)
+    mollie-api-ruby (4.19.0)
+      bigdecimal (>= 3.1.8, < 5.0)
+      ostruct (~> 0.6.0)
     msgpack (1.8.2)
     multi_json (1.21.1)
     multi_xml (0.9.1)
@@ -712,6 +715,7 @@ GEM
       opentelemetry-api (~> 1.0)
     optimist (3.2.1)
     os (1.1.4)
+    ostruct (0.6.3)
     paper_trail (17.0.0)
       activerecord (>= 7.1)
       request_store (~> 1.4)
@@ -1128,6 +1132,7 @@ DEPENDENCIES
   lograge
   logstash-event
   money-rails
+  mollie-api-ruby
   multi_json
   multipart-post
   mutex_m

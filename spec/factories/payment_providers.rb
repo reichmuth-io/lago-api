@@ -101,6 +101,27 @@ FactoryBot.define do
       flow_id { SecureRandom.uuid[0..19] }
     end
   end
+
+  factory :mollie_provider, class: "PaymentProviders::MollieProvider" do
+    organization
+    type { "PaymentProviders::MollieProvider" }
+    name { "Mollie" }
+    code { "mollie_#{SecureRandom.uuid}" }
+
+    secrets do
+      {api_key:}.to_json
+    end
+
+    settings do
+      {success_redirect_url:}
+    end
+
+    transient do
+      api_key { SecureRandom.uuid }
+      success_redirect_url { Faker::Internet.url }
+    end
+  end
+
   factory :flutterwave_provider, class: "PaymentProviders::FlutterwaveProvider" do
     organization
     type { "PaymentProviders::FlutterwaveProvider" }

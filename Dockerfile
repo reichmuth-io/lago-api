@@ -34,8 +34,7 @@ COPY Gemfile Gemfile.lock ./
 
 RUN gem install bundler --no-document -v "${BUNDLER_VERSION}"
 
-RUN --mount=type=secret,id=BUNDLE_GEMS__CONTRIBSYS__COM,env=BUNDLE_GEMS__CONTRIBSYS__COM \
-    bundle config set --local build.nokogiri --use-system-libraries && \
+RUN bundle config set --local build.nokogiri --use-system-libraries && \
     bundle install --jobs=3 --retry=3
 
 FROM ${RUNTIME_IMAGE}

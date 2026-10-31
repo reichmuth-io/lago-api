@@ -542,6 +542,17 @@ input AddMoneyhashPaymentProviderInput {
   successRedirectUrl: String
 }
 
+"""
+Mollie input arguments
+"""
+input AddMolliePaymentProviderInput {
+  apiKey: String!
+  clientMutationId: String
+  code: String!
+  name: String!
+  successRedirectUrl: String
+}
+
 type AddOn {
   amountCents: BigInt!
   amountCurrency: CurrencyEnum!
@@ -8474,6 +8485,14 @@ type MoneyhashProvider {
   successRedirectUrl: String
 }
 
+type MollieProvider {
+  apiKey: String
+  code: String!
+  id: ID!
+  name: String!
+  successRedirectUrl: String
+}
+
 type Mrr {
   amountCents: BigInt
   currency: CurrencyEnum
@@ -8555,6 +8574,13 @@ type Mutation {
     """
     input: AddMoneyhashPaymentProviderInput!
   ): MoneyhashProvider
+
+  """
+  Add or update Mollie payment provider
+  """
+  addMolliePaymentProvider(
+    input: AddMolliePaymentProviderInput!
+  ): MollieProvider
 
   """
   Upload an image for a quote and return its id and URL
@@ -10609,6 +10635,13 @@ type Mutation {
   ): MoneyhashProvider
 
   """
+  Update Mollie payment provider
+  """
+  updateMolliePaymentProvider(
+    input: UpdateMolliePaymentProviderInput!
+  ): MollieProvider
+
+  """
   Update Netsuite integration
   """
   updateNetsuiteIntegration(
@@ -11282,7 +11315,7 @@ enum PaymentMethodTypeEnum {
   provider
 }
 
-union PaymentProvider = AdyenProvider | CashfreeProvider | FlutterwaveProvider | GocardlessProvider | MoneyhashProvider | StripeProvider
+union PaymentProvider = AdyenProvider | CashfreeProvider | FlutterwaveProvider | GocardlessProvider | MoneyhashProvider | MollieProvider | StripeProvider
 
 """
 PaymentProviderCollection type
@@ -12204,6 +12237,7 @@ enum ProviderTypeEnum {
   flutterwave
   gocardless
   moneyhash
+  mollie
   stripe
 }
 
@@ -16102,6 +16136,19 @@ input UpdateMoneyhashPaymentProviderInput {
   clientMutationId: String
   code: String
   flowId: String
+  id: ID!
+  name: String
+  requireTermsOfServiceConsent: Boolean
+  successRedirectUrl: String
+  supports3ds: Boolean
+}
+
+"""
+Update input arguments
+"""
+input UpdateMolliePaymentProviderInput {
+  clientMutationId: String
+  code: String
   id: ID!
   name: String
   requireTermsOfServiceConsent: Boolean

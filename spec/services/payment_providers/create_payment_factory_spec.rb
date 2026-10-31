@@ -28,5 +28,13 @@ RSpec.describe PaymentProviders::CreatePaymentFactory do
         expect(new_instance).to be_instance_of(PaymentProviders::Gocardless::Payments::CreateService)
       end
     end
+
+    context "when provider is mollie" do
+      let(:provider) { "mollie" }
+
+      it "creates an instance of the Mollie service" do
+        expect(new_instance).to be_instance_of(PaymentProviders::Mollie::Payments::CreateService)
+      end
+    end
   end
 end

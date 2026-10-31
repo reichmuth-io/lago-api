@@ -20,6 +20,8 @@ module PaymentProviders
         PaymentProviders::Stripe::Customers::CreateService
       when "moneyhash"
         PaymentProviders::Moneyhash::Customers::CreateService
+      when "mollie"
+        PaymentProviders::Mollie::Customers::CreateService
       end
     end
   end

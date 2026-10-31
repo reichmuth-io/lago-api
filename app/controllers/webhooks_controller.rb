@@ -108,4 +108,12 @@ class WebhooksController < ApplicationController
 
     head(:ok)
   end
+
+  def mollie
+    result = PaymentProviders::Mollie::HandleIncomingWebhookService.call(
+      organization_id: params[:organization_id], code: params[:code].presence, payment_id: params[:id]
+    )
+    result.raise_if_error! unless result.success?
+    head(:ok)
+  end
 end
